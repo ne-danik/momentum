@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/owfont-regular.css">
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <title>momentum</title>
+</head>
+<body>
+  
+  <div class="grid-container">
+
+    <div class="greeting-block">
+      <h1>
+        <span class="greeting"></span>
+        <span class="name" contenteditable="true"></span>
+      </h1>
+    </div>
+
+    <div class="date-block">
+      <h3 class="day-week"></h3>
+      <time class="time"></time>
+    </div>
+
+    <div class="weather-block">
+      <h3 class="city" contenteditable="true">Yekaterinburg</h3>
+      <div class="weather-content">
+        <i class="weather-icon owf"></i>
+        <span class="temperature"></span>
+      </div>
+      <h3 class="weather-description"></h3>
+      <div class="weather-additions">
+        <span class="weather-add-icon wind" title="Wind speed"></span> <span id="wind" title="Wind speed"></span> &nbsp;&middot;&nbsp;
+        <span class="weather-add-icon humidity" title="Humidity"></span><span id="humidity" title="Humidity"></span>
+      </div>
+    </div>
+
+    <div class="focus-block">
+      <h2>What Is Your Focus For Today?</h2>
+      <h2 class="focus" contenteditable="true"></h2>
+    </div>
+
+    <div class="quote-block">
+      <figure class="quote">
+        <blockquote></blockquote>
+        <figcaption></figcaption>
+      </figure>
+      <button class="btn-refresh" title="Refresh"></button>
+    </div>
+  </div>
+
+  <button class="btn-arrow prev" id="btnPrev" title="Previous"></button>
+  <button class="btn-arrow next" id="btnNext" title="Next"></button>
+
+  <div class="overlay"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

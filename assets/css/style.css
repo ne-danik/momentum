@@ -1,0 +1,483 @@
+:root {
+  font-size: 10px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-size: cover;
+  background-position: center center;
+  background-image: url('../images/day/01.jpg');
+  font: 400 1.6rem 'Open Sans', sans-serif;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 0.1rem 0.5rem rgba(0,0,0,1);
+  transition: background-image 1s ease-in-out;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center center;
+  background-image: url('../images/overlay.png');
+  z-index: -1;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px 0px;
+  grid-template-areas:
+    "greeting greeting"
+    "date weather"
+    "focus focus"
+    "quote quote";
+  width: 860px;
+  transition: all 0.6s;
+}
+
+.greeting-block { 
+  grid-area: greeting;
+  height: auto;
+  transition: all 0.6s;
+}
+
+.date-block { 
+  grid-area: date;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: all 0.6s;
+}
+
+.weather-block { 
+  grid-area: weather;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-end;
+  transition: all 0.6s;
+}
+
+.focus-block { 
+  grid-area: focus;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.6s;
+}
+
+.quote-block { 
+  grid-area: quote;
+  transition: all 0.6s;
+}
+
+h1 {
+  font-weight: 400;
+  transition: all 0.6s;
+}
+
+.name {
+  padding: 0 0.3rem;
+  border: none;
+  border-radius: 0.6rem;
+  background-color: transparent;
+  outline: none;
+  transition: all 0.6s;
+}
+
+.name:hover {
+  background-color: rgba(255,255,255,0.3);
+  transition: background-color .3s ease;
+}
+
+h2 {
+  font-size: 2.2rem;
+  font-weight: 600;
+  transition: all 0.6s;
+}
+
+.time {
+  font-size: 8rem;
+  font-weight: 700;
+  transition: all 0.6s;
+}
+
+h3, #wind, #humidity {
+  font-size: 2rem;
+  font-weight: 400;
+  transition: all 0.6s;
+}
+
+.focus {
+  padding: 0 0.3rem;
+  border: none;
+  border-radius: 0.6rem;
+  background-color: transparent;
+  outline: none;
+  transition: all 0.6s;
+}
+
+.focus:hover {
+  background-color: rgba(255,255,255,0.3);
+  transition: background-color .3s ease;
+}
+
+.weather-content {
+  display: flex;
+  align-items: center;
+  transition: all 0.6s;
+}
+
+.weather-icon {
+  font-size: 4rem;
+  margin-right: 3rem;
+  transition: all 0.6s;
+}
+
+.temperature {
+  font-size: 8rem;
+  font-weight: 700;
+  transition: all 0.6s;
+}
+
+.weather-add-icon {
+  margin: 0 5px;
+  padding: 10px;
+  transition: all 0.6s ease;
+}
+.weather-add-icon.wind { background: url('../icons/wind.svg') no-repeat center; }
+.weather-add-icon.humidity { background: url('../icons/humidity.svg') no-repeat center; }
+
+.quote {
+  margin-bottom: 1.5rem;
+  padding: 10px;
+  border: none;
+  border-radius: 0.6rem;
+  background: rgba(0,0,0,0.5);
+  font-size: 1.8rem;
+  font-weight: 400;
+  font-style: italic;
+  text-align: left;
+  transition: all 0.6s;
+}
+
+.quote figcaption,
+.quote blockquote {
+  margin: 10px;
+  transition: all 0.6s;
+}
+
+.quote figcaption {
+  text-align: right;
+  font-size: 1.6rem;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.btn-refresh {
+  margin: 0;
+  padding: 15px;
+  border: 0;
+  background: url('../icons/refresh.svg') no-repeat center;
+  outline: none;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: all 0.9s ease;
+}
+
+.btn-refresh:hover {
+  opacity: 1;
+  transform: rotate(-360deg) scale(1.1);
+  transition: all 0.9s ease;
+}
+
+.btn-arrow {
+  position: fixed;
+  margin: 0;
+  padding: 15px;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: all 0.6s ease;
+}
+
+.next {
+  right: 6%;
+  background: url('../icons/next.svg') no-repeat center;
+}
+
+.prev {
+  left: 6%;
+  background: url('../icons/prev.svg') no-repeat center;
+}
+
+.btn-arrow:hover {
+  opacity: 1;
+  transform: scale(1.1);
+  transition: all 0.6s ease;
+}
+
+.btn-arrow:active {
+  transform: scale(1);
+  transition: transform 0.3s ease;
+}
+
+.disabled, .disabled:hover {
+  cursor: default;
+  opacity: 0.3;
+  transform: scale(1);
+}
+
+@media screen and (orientation: portrait) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 100px 0px;
+    grid-template-areas:
+      "greeting"
+      "date"
+      "weather"
+      "focus"
+      "quote";
+    width: 600px;
+  }
+  h1 { font-size: 5rem; }
+  h3, #wind, #humidity { font-size: 3rem; }
+  .time { font-size: 12rem; }
+  h2 { font-size: 3.2rem; }
+  .date-block { align-items: center; }
+  .weather-block { align-items: center; }  
+  .weather-icon { font-size: 10rem; }
+  .temperature { font-size: 12rem; }
+  .quote figcaption, .quote blockquote {
+    font-size: 2rem; 
+  }
+  .next { bottom: 5%; }
+  .prev { bottom: 5%; }
+}
+
+/*
+*/
+@media screen and (max-height: 1279px) and (orientation: portrait) {
+  .grid-container {
+    gap: 80px 0px;
+    width: 520px;
+  }
+  h1 { font-size: 4.6rem; }
+  h3, #wind, #humidity { font-size: 2.8rem; }
+  .time { font-size: 10rem; }
+  h2 { font-size: 3rem; }  
+  .weather-icon { font-size: 8rem; }
+  .temperature { font-size: 10rem; }
+  .quote figcaption, .quote blockquote {
+    font-size: 1.8rem; 
+  }
+}
+@media screen and (max-height: 1139px) and (orientation: portrait) {
+  .grid-container {
+    gap: 60px 0px;
+    width: 480px;
+  }
+  h1 { font-size: 4.4rem; }
+  h3, #wind, #humidity { font-size: 2.6rem; }
+  .time { font-size: 8rem; }
+  h2 { font-size: 2.8rem; }  
+  .weather-icon { font-size: 6rem; }
+  .temperature { font-size: 8rem; }
+  .quote { padding: 3px; }
+  .quote figcaption, .quote blockquote {
+    font-size: 1.6rem; 
+  }
+}
+@media screen and (max-height: 989px) and (orientation: portrait) {
+  .grid-container {
+    gap: 40px 0px;
+    width: 360px;
+  }
+  h1 { font-size: 3.2rem; }
+  h3, #wind, #humidity { font-size: 2rem; }
+  .time { font-size: 6rem; }
+  h2 { font-size: 2.2rem; }  
+  .weather-icon { font-size: 3.8rem; }
+  .temperature { font-size: 4rem; }
+  .quote { padding: 3px; }
+  .quote figcaption, .quote blockquote {
+    margin: 5px;
+    font-size: 1.4rem; 
+  }
+}
+@media screen and (max-height: 768px) and (orientation: portrait) {
+  h1 { font-size: 2.6rem; }
+  h3, #wind, #humidity { font-size: 1.6rem; }
+  h2 { font-size: 1.8rem; }
+  .weather-icon { font-size: 3.6rem; }
+  .quote figcaption, .quote blockquote { font-size: 1.2rem; }
+}
+@media screen and (max-height: 679px) and (orientation: portrait) {
+  .grid-container {
+    gap: 30px 0px;
+    width: 90%;
+  }
+  h1 { font-size: 2.4rem; }
+  h3, #wind, #humidity { font-size: 1.4rem; }
+  .time { font-size: 4rem; }
+  h2 { font-size: 1.6rem; }
+  .weather-icon { font-size: 3rem; }
+}
+@media screen and (max-height: 579px) and (orientation: portrait) {
+  .grid-container {
+    gap: 20px 0px;
+    width: 280px;
+  }
+  h1 { font-size: 2rem; }
+  h3, #wind, #humidity { font-size: 1.4rem; }
+  .time { font-size: 3.8rem; }
+  h2 { font-size: 1.4rem; }
+  .weather-icon { font-size: 3rem; }
+  .temperature { font-size: 3.8rem; }
+}
+@media screen and (max-height: 524px) and (orientation: portrait) {
+  .grid-container {
+    gap: 10px 0px;
+    width: 240px;
+  }
+  h1 { font-size: 1.8rem; }
+  h3, #wind, #humidity { font-size: 1.2rem; }
+  .time { font-size: 3.4rem; }
+  h2 { font-size: 1.2rem; }
+  .weather-icon { font-size: 2.6rem; }
+  .temperature { font-size: 3rem; }
+  .quote figcaption, .quote blockquote { font-size: 1rem; }
+}
+@media screen and (max-height: 429px) and (orientation: portrait) {
+  .grid-container {
+    gap: 10px 0px;
+    width: 200px;
+  }
+  h1 { font-size: 1.2rem; }
+  h3, #wind, #humidity { font-size: 1rem; }
+  .time { font-size: 3rem; }
+  h2 { font-size: 1rem; }
+  .weather-icon { font-size: 2rem; }
+  .temperature { font-size: 2.4rem; }
+}
+
+/*
+*/
+@media screen and (max-width: 1279px) and (orientation: landscape) {
+  .grid-container { width: 640px; }
+}
+@media screen and (max-width: 1139px) and (orientation: landscape) {
+  .grid-container { width: 520px; }
+}
+@media screen and (max-width: 919px) and (orientation: landscape) {
+  .grid-container { width: 480px; }
+}
+@media screen and (max-width: 767px) and (orientation: landscape) {
+  .grid-container { width: 360px; }
+}
+@media screen and (max-width: 480px) and (orientation: landscape) {
+  .grid-container { width: 280px; }
+}
+
+/*
+*/
+@media screen and (max-height: 919px) and (orientation: landscape) {
+  .grid-container {
+    gap: 60px 0px;
+    width: 640px;
+  }
+  h1 { font-size: 3rem; }
+  h3, #wind, #humidity { font-size: 1.8rem; }
+  .time { font-size: 6rem; }
+  h2 { font-size: 2rem; }
+  .weather-icon { font-size: 4rem; }
+  .temperature { font-size: 6rem; }
+  .quote figcaption, .quote blockquote { font-size: 1.4rem; }
+}
+@media screen and (max-width: 1279px) and (orientation: landscape) {
+  .grid-container { width: 640px; }
+}
+@media screen and (max-height: 767px) and (orientation: landscape) {
+  .grid-container {
+    gap: 40px 0px;
+    width: 480px;
+  }
+  h1 { font-size: 2.4rem; }
+  h3, #wind, #humidity { font-size: 1.4rem; }
+  .time { font-size: 4rem; }
+  h2 { font-size: 1.6rem; }
+  .weather-icon { font-size: 4rem; }
+  .temperature { font-size: 4rem; }
+  .weather-add-icon { padding: 8px; }
+  .quote figcaption, .quote blockquote {  
+    margin: 3px;
+    font-size: 1.2rem; 
+  }
+}
+@media screen and (max-width: 1139px) and (orientation: landscape) {
+  .grid-container { width: 480px; }
+}
+@media screen and (max-height: 479px) and (orientation: landscape) {
+  .grid-container {
+    gap: 20px 0px;
+    width: 360px;
+  }
+  h1 { font-size: 2rem; }
+  h3, #wind, #humidity { font-size: 1.2rem; }
+  .time { font-size: 3.6rem; }
+  h2 { font-size: 1.4rem; }
+  .weather-icon { font-size: 3rem; }
+  .temperature { font-size: 3.6rem; }
+  .quote {
+    padding: 3px;
+    margin-bottom: 1rem; 
+  }
+  .quote figcaption, .quote blockquote { font-size: 1.2rem; }
+}
+@media screen and (max-width: 919px) and (orientation: landscape) {
+  .grid-container { width: 360px; }
+}
+@media screen and (max-height: 360px) and (orientation: landscape) {
+  .grid-container {
+    gap: 20px 0px;
+    width: 360px;
+  }
+  h1 { font-size: 1.6rem; }
+  h3, #wind, #humidity { font-size: 1.2rem; }
+  .time { font-size: 3rem; }
+  h2 { font-size: 1.2rem; }
+  .weather-icon { font-size: 2.4rem; }
+  .temperature { font-size: 3rem; }
+  .weather-add-icon { padding: 5px; }
+  .quote {
+    padding: 3px;
+    margin-bottom: 0.5rem;
+   }
+  .quote figcaption, .quote blockquote { font-size: 1.2rem; }
+}
+@media screen and (max-width: 767px) and (orientation: landscape) {
+  .grid-container { width: 360px; }
+}
+@media screen and (max-height: 320px) and (orientation: landscape) {
+  .grid-container { gap: 10px 0px; }
+}
+@media screen and (max-width: 600px) and (orientation: landscape) {
+  .grid-container { width: 280px; }
+}
